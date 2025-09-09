@@ -6,7 +6,7 @@ build: clean
 	mkdir -p $(IMG_DIR)
 	echo "# Titles" > README.md
 	echo "A collection of LaTeX title pages" >> README.md
-	for f in $(shell find . -type f -name "*.tex"); do \
+	for f in $(shell find . -type f -name "*.tex" ! -name "common.tex"); do \
 		xelatex -interaction=nonstopmode -output-directory=$(BUILD_DIR) "$$f"; \
 		xelatex -interaction=nonstopmode -output-directory=$(BUILD_DIR) "$$f"; \
 		base=$$(basename "$$f" .tex); \
