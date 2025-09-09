@@ -1,0 +1,38 @@
+\input{common.tex}
+
+\pgfmathsetmacro{\waveCount}{10}
+\pgfmathsetmacro{\dPhase}{10}
+\pgfmathsetmacro{\fCarrier}{3}
+\pgfmathsetmacro{\fMod}{2}
+
+\newcommand{\sineWave}[4] {
+	\draw[domain=0:1,smooth,variable=\x,draw=#2,samples=200, opacity=#4] plot (
+  		{\paperwidth * \x},
+		{sin(\x * 360 * \fCarrier + (#3 * \dPhase) + #1) * (1.5 + sin(\x * 360 * \fMod) * 0.5)}
+	);
+}
+
+\begin{document}
+	\begin{tikzpicture}[overlay, remember picture, shift={(current page.west)}, yshift=-3cm]
+		\foreach \i in {0, ..., \waveCount} {
+			\pgfmathsetmacro{\brt}{(100 / \waveCount) * \i}
+			\sineWave{0}{NavyBlue!\brt}{\i}{\i / \waveCount}
+		}
+
+		\foreach \i in {0, ..., \waveCount} {
+			\pgfmathsetmacro{\brt}{100 - (100 / \waveCount) * \i}
+			\sineWave{180}{MidnightBlue!\brt}{\i}{1 - \i / \waveCount}
+		}
+	\end{tikzpicture}
+	\vspace*{\fill}
+	\begin{center}
+		\scshape \LARGE Lorem Ipsum \\[.5\baselineskip]
+		\fontsize{40}{\baselineskip}\selectfont Dolor Sit Amet
+	\end{center}
+	\vspace*{1cm}
+	\vspace*{\fill}
+	\rule{8cm}{.1pt}\\[.5\baselineskip]
+	\large Author Name \\[.25\baselineskip]
+	Author Name \\[\baselineskip]
+	\textit{June 1989}
+\end{document}
