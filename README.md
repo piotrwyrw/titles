@@ -4,3 +4,5 @@ A collection of LaTeX title pages
 ![](./images/threads.png)
 ## waves-fm
 ![](./images/waves-fm.png)
+## waves
+![](./images/waves.png)
