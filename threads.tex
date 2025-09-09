@@ -1,0 +1,29 @@
+\input{common.tex}
+
+\def\bgcolor{NavyBlue}
+
+\begin{document}
+	\thispagestyle{empty}
+	\begin{tikzpicture}[remember picture, overlay, shift={(current page.south west)}]
+		\pgfmathsetmacro{\dx}{5}
+		\pgfmathsetmacro{\count}{\paperwidth / \dx}
+		\pgfmathsetmacro{\dy}{\paperheight / \count}
+		\foreach \n in {1,...,\count} {
+			\pgfmathsetmacro{\yFrom}{\paperheight - (\dy * \n)}
+			\pgfmathsetmacro{\xTo}{\n * \dx}
+			\draw[draw=\bgcolor, opacity=.2] (0, \yFrom pt) -- (\xTo pt, 0);
+			\pgfmathsetmacro{\yFrom}{(\dy * \n)}
+			\pgfmathsetmacro{\xTo}{\paperwidth - \n * \dx}
+			\draw[draw=\bgcolor, opacity=.2] (\paperwidth, \yFrom pt) -- (\xTo pt, \paperheight);
+		}
+	\end{tikzpicture}
+	\vspace*{\fill}
+	\begin{center}
+		\huge \textsc{Lorem Ipsum} \\
+		\Huge \textsc{Dolor Sit Amet} \\[3mm]
+		\Large Author Name \\[2mm]
+		\Large Author Name \\[2mm]
+		\large \textit{June 1970}
+	\end{center}
+	\vspace*{\fill}
+\end{document}
